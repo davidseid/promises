@@ -34,13 +34,10 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
     })
     .then(function(data) {
       console.log(data);
-      fs.writeFile(writeFilePath, data, function(err) {
-        if (err) {
-          throw err;
-        } else {
-          console.log('SUCCESS');
-        }
-      });
+      fs.writeFileSync(writeFilePath, JSON.stringify(data));
+    })
+    .catch(function(err) {
+      console.log('houston we have an ' + err);
     });
   // asynchronously read a file and get the first line of the file as the username
   // async send a request to the Github API for the user's profile
